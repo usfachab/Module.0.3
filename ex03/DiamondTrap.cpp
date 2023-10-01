@@ -6,7 +6,7 @@
 /*   By: yachaab <yachaab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 01:25:20 by yachaab           #+#    #+#             */
-/*   Updated: 2023/09/30 21:20:20 by yachaab          ###   ########.fr       */
+/*   Updated: 2023/10/01 19:43:17 by yachaab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,48 @@
 
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
 {
-	name	= "Default";
-	hit		= FragTrap::getHealthPoints();
-	energy	= ScavTrap::getEnergy();
-	damage	= FragTrap::getDamagePoints();
-	std::cout << "DiamondTrap default constructor called" << std::endl;
+    name   = "Default";
+    hit    = FragTrap::getHealthPoints();
+    energy = ScavTrap::getEnergy();
+    damage = FragTrap::getDamagePoints();
+    std::cout << "DiamondTrap default constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string dName) : ClapTrap(dName + "_clap_name"), ScavTrap( dName ), FragTrap( dName )
+DiamondTrap::DiamondTrap( std::string dName ) :
+    ClapTrap( dName + "_clap_name" ),
+    ScavTrap( dName ),
+    FragTrap( dName )
 {
-	name	= dName;
-	hit		= FragTrap::getHealthPoints();
-	energy	= ScavTrap::getEnergy();
-	damage	= FragTrap::getDamagePoints();
-	std::cout << "DiamondTrap parametrize constructor called" << std::endl;
+    name   = dName;
+    hit    = FragTrap::getHealthPoints();
+    energy = ScavTrap::getEnergy();
+    damage = FragTrap::getDamagePoints();
+    std::cout << "DiamondTrap parametrize constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap( const DiamondTrap& obj ) : ClapTrap( obj ), ScavTrap( obj ), FragTrap( obj )
+DiamondTrap::DiamondTrap( const DiamondTrap& obj ) :
+    ClapTrap( obj ),
+    ScavTrap( obj ),
+    FragTrap( obj )
 {
-	this->name = obj.name;
-	std::cout << "DiamondTrap copy constructor called" << std::endl;
+    this->name = obj.name;
+    std::cout << "DiamondTrap copy constructor called" << std::endl;
 }
 
-DiamondTrap& DiamondTrap::operator=(const DiamondTrap& rhs)
+DiamondTrap& DiamondTrap::operator=( const DiamondTrap& rhs )
 {
-	name	= rhs.name;
-	hit		= rhs.hit;
-	energy	= rhs.energy;
-	damage	= rhs.damage;
+    name   = rhs.name;
+    hit    = rhs.hit;
+    energy = rhs.energy;
+    damage = rhs.damage;
 
-	return (*this);
+    return ( *this );
 }
 
 DiamondTrap::~DiamondTrap() { std::cout << "DiamondTrap destructor called" << std::endl; }
 
-std::string& DiamondTrap::getName()
-{
-	return (name);
-}
+void DiamondTrap::whoAmI() { std::cout << name << ", " << ClapTrap::name << std::endl; }
 
-void DiamondTrap::attack(std::string& target)
-{
-	ScavTrap::attack(target);
-}
+std::string& DiamondTrap::getName() { return ( name ); }
 
-void DiamondTrap::takeDamage(unsigned int amount)
-{
-	std::cout << "DiamondTrap " << name << " take damage of " << amount << std::endl;
-	if ( amount >= hit )
-		hit = 0;
-	else
-		hit -= amount;
-}
-
-void DiamondTrap::beRepaired( unsigned int amount)
-{
-	std::cout << "DiamondTrap " << name << " hit points regain: " << amount << std::endl;
-	hit		= amount;
-	energy -= 1;
-}
-
-void DiamondTrap::whoAmI()
-{
-	std::cout << name << ", " << ClapTrap::name << std::endl;
-}
+void         DiamondTrap::attack( std::string& target ) { ScavTrap::attack( target ); }

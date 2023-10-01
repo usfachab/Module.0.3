@@ -6,7 +6,7 @@ OBJDIR  = obj
 
 CPPFLAG = -Werror -Wall -Wextra -std=c++98 -g3 -fsanitize=address
 
-SRC     = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRC     = main.cpp ClapTrap.cpp FragTrap.cpp
 
 OBJ     = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
